@@ -14,6 +14,6 @@ trim_trailing_whitespace = true
 [*.{yml,yaml}]
 indent_size = 2
 
-[MQL5/**]
+[MQL5/*.{mqh,mq5}]
 end_of_line = crlf
 indent_size = unset
