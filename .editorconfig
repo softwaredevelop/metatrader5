@@ -17,4 +17,3 @@ indent_size = 2
 [MQL5/**]
 end_of_line = crlf
 indent_size = unset
-insert_final_newline = unset
