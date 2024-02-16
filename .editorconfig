@@ -15,4 +15,5 @@ trim_trailing_whitespace = true
 indent_size = 2
 
 [MQL5/**]
+end_of_line = crlf
 indent_size = unset
