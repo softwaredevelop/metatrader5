@@ -18,5 +18,5 @@ indent_size = 2
 end_of_line = crlf
 indent_size = unset
 
-[MQL5/Profiles/Templates/**]
+[*.tpl]
 charset = utf-16le
