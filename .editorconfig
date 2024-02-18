@@ -20,3 +20,5 @@ indent_size = unset
 
 [MQL5/Profiles/Templates/**]
 charset = utf-16le
+end_of_line = crlf
+indent_size = unset
