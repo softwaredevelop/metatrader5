@@ -1,3 +1,5 @@
 *.mqh text eol=crlf
 *.mq5 text eol=crlf
 *.tpl text eol=crlf
+*.chr text eol=crlf
+*.wnd text eol=crlf
