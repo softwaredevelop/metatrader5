@@ -11,12 +11,12 @@ updates:
     labels:
       - "github-actions dependencies"
 
-  - package-ecosystem: "docker"
-    directory: ".devcontainer/"
+  - package-ecosystem: "gomod"
+    directory: "/"
     schedule:
       interval: "weekly"
       day: "friday"
       time: "00:00"
       timezone: "Europe/Berlin"
     labels:
-      - "docker dependencies"
+      - "go-modules dependencies"
