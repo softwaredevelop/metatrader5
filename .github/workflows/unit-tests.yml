@@ -47,3 +47,34 @@ jobs:
       - name: Run unit tests on code quality functions
         run: go test -v ./...
         working-directory: cc
+
+  unit_tests_in_iac:
+    name: Unit tests in iac
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' || endsWith(github.event.head_commit.modified, '_test.go') }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go latest
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Download dependencies for iac/plm/util
+        run: go mod download
+        working-directory: iac/plm/util
+
+      - name: Download dependencies for iac/plm
+        run: go mod download
+        working-directory: iac/plm
+
+      - name: Download dependencies for iac/lcs
+        run: go mod download
+        working-directory: iac/lcs
+
+      - name: Run unit tests on Pulumi functions in iac/plm
+        run: go test -v ./...
+        working-directory: iac/plm
