@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - "cc/**/*_test.go"
+      - "iac/**/*_test.go"
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
