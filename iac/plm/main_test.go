@@ -144,5 +144,3 @@ func TestPulumiLocal(t *testing.T) {
 		require.ErrorContains(t, err, "not exist")
 	})
 }
-
-//
