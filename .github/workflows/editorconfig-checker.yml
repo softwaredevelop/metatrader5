@@ -1,7 +1,7 @@
 ---
-name: code-quality
+name: editorconfig-checker
 
-run-name: Code quality
+run-name: Editorconfig-checker
 
 on:
   pull_request:
@@ -23,8 +23,8 @@ jobs:
           cancel_others: true
           concurrent_skipping: never
 
-  code_quality:
-    name: Code quality
+  editorconfig_checker:
+    name: Editorconfig-checker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,21 +32,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Go latest
-        uses: actions/setup-go@v5
+      - name: Call Dagger Function
+        uses: dagger/dagger-for-github@v6
         with:
-          go-version: stable
-
-      - name: Download dependencies
-        run: |
-          go mod download
-        working-directory: cc
-
-      - name: Run Dagger
-        uses: dagger/dagger-for-github@v5
-        with:
-          args: go run -v .
-          dagger-flags: --debug
-          verb: run
-          version: latest
-          workdir: cc
+          args: check --source=. stdout
+          module: github.com/softwaredevelop/daggerverse/editorconfig@main
+          verb: call
+          version: "latest"
