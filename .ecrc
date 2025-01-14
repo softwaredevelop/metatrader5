@@ -1,0 +1,18 @@
+{
+  "Verbose": true,
+  "Debug": true,
+  "IgnoreDefaults": false,
+  "SpacesAftertabs": false,
+  "NoColor": false,
+  "Exclude": [".ecrc","\\.ex5"],
+  "AllowedContentTypes": [],
+  "PassedFiles": [],
+  "Disable": {
+    "EndOfLine": false,
+    "Indentation": false,
+    "InsertFinalNewline": false,
+    "TrimTrailingWhitespace": false,
+    "IndentSize": false,
+    "MaxLineLength": false
+  }
+}
