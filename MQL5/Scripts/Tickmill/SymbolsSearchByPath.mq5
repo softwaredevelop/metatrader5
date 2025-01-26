@@ -5,7 +5,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Copyright 2025, MetaQuotes Ltd."
 #property link      "https://www.mql5.com"
-#property version   "1.02"
+#property version   "1.03"
 #property script_show_inputs // Enable input panel
 //+------------------------------------------------------------------+
 //| Input parameters                                                 |
@@ -20,6 +20,40 @@ enum ReturnType
   };
 
 input ReturnType returnType = ByPath; // Return type
+//+------------------------------------------------------------------+
+//| Quick Sort Algorithm                                             |
+//+------------------------------------------------------------------+
+void QuickSort(string &array[], int left, int right)
+  {
+   if(left >= right)
+      return; // Base case: if the array has one or no elements, it's sorted
+   int pivotIndex = left + (right - left) / 2; // Choose pivot element
+   string pivotValue = array[pivotIndex];
+   int i = left, j = right;
+
+   while(i <= j)
+     {
+      while(StringCompare(array[i], pivotValue) < 0)
+         i++; // Move left index right
+      while(StringCompare(array[j], pivotValue) > 0)
+         j--; // Move right index left
+      if(i <= j)
+        {
+         // Swap elements
+         string temp = array[i];
+         array[i] = array[j];
+         array[j] = temp;
+         i++;
+         j--;
+        }
+     }
+
+// Recursively sort left and right partitions
+   if(left < j)
+      QuickSort(array, left, j);
+   if(i < right)
+      QuickSort(array, i, right);
+  }
 //+------------------------------------------------------------------+
 //| Script program start function                                    |
 //+------------------------------------------------------------------+
@@ -44,17 +78,19 @@ void OnStart()
         }
      }
 
-//--- Printing the results based on the selected return type
+//--- Sorting the results using QuickSort
    if(ArraySize(results) > 0)
      {
-      if(returnType == ByPath)
-         Print("Paths matching the search term '", searchTerm, "':");
-      else
-         Print("Symbol names matching the search term '", searchTerm, "':");
+      QuickSort(results, 0, ArraySize(results) - 1); // Sort the results
 
-      for(int i = 0; i < ArraySize(results); i++) // Loop through the results
+      if(returnType == ByPath)
+         Print("Sorted paths matching the search term '", searchTerm, "':");
+      else
+         Print("Sorted symbol names matching the search term '", searchTerm, "':");
+
+      for(int i = 0; i < ArraySize(results); i++) // Loop through the sorted results
         {
-         Print(results[i]); // Print each result
+         Print(results[i]); // Print each sorted result
         }
      }
    else
